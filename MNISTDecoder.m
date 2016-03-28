@@ -1,4 +1,6 @@
-function [labels images] = MNISTDecoder(labelsFile, ImagesFile)
+function [images labels] = MNISTDecoder(ImagesFile, labelsFile)
+%output: matrices containing data for images and labels
+%input: files containing images and labels in IDX-UBYTE format
 
 fid = fopen(labelsFile,'r','b');
 if (fread(fid, 1, 'int32') ~= 2049), 
@@ -27,5 +29,5 @@ fclose(fid);
 images = reshape(images, [w*h count]);
 images = images';
 
-#uncomment tabbed line below to rescale pixel values to be between 0 and 1
+#uncomment line below to rescale pixel values to be between 0 and 1
 images = double(images) / 255; 
