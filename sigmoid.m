@@ -1,7 +1,6 @@
-function out = sigmoid(in)
-%input : in = vector or single integer
-n = length(in);
-out = zeros(1, n);
-for i=1:n
-  out(i) = 1.0 / (1.0 + exp(-in(i)));
-end
+function a = sigmoid(in)
+%input : input vector or matrix (can handle multiple samples)
+%output: activation value (as a vector or matrix, depending on input)
+
+a = 1 + exp(-in);
+a = a.^-1;
