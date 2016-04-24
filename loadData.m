@@ -21,6 +21,3 @@ clear xinput ylabel;
 clear testingSet testingSetLabels;
 testingSet = [xinput ylabel];
 clear xinput ylabel;
-
-disp('data loaded onto memory.');
-disp('associated variables: trainingData testingData');
