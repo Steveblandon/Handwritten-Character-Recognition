@@ -1,4 +1,4 @@
-function [trainingSet, testingSet] = loadData()
+function [trainingSet, testingSet] = loadData(inputLayerSize)
 %this function decodes and loads MNIST data
 %each set has 784 features, the 785th column is the class each sample belongs to
 trainingSet = 'MNIST/train-images-idx3-ubyte';
@@ -21,3 +21,14 @@ clear xinput ylabel;
 clear testingSet testingSetLabels;
 testingSet = [xinput ylabel];
 clear xinput ylabel;
+
+%each sample's label should be an index, since its just digits only 0 needs 
+%to be changed to 10 since matrices are 1-indexed.
+labels = trainingSet(:,inputLayerSize+1);
+labels(labels == 0) = 10;
+trainingSet(:,inputLayerSize+1) = labels;
+clear labels;
+labels = testingSet(:,inputLayerSize+1);
+labels(labels == 0) = 10;
+testingSet(:,inputLayerSize+1) = labels;
+clear labels;
