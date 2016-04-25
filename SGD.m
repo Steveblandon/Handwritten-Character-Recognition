@@ -1,4 +1,4 @@
-function [w1,b1,w2,b2] = SGD(trainingSet, testingSet, test, epochs, batchSize, rate, 
+function [w1,b1,w2,b2,best] = SGD(trainingSet, testingSet, test, epochs, batchSize, rate, 
 inputLayerSize, outputLayerSize, w1, b1, w2, b2)
 
 for i=1:epochs
@@ -39,6 +39,7 @@ for i=1:epochs
     setSize = size(testingSet,1);
     a = feedForward(testingSet(:,1:inputLayerSize),w1,b1,w2,b2);
     count = sum(classify(a) == labels');
+    best = count/setSize;
     disp(['epoch ' num2str(i) ': ' num2str(count) '/' num2str(setSize)]);
     fflush(stdout);
   end

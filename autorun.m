@@ -20,7 +20,7 @@ runTest = true;
 if (sampleCount > 0)
   trainingSet = trainingSet(1:sampleCount,1:inputLayerSize+1);
 end
-[w1,b1,w2,b2] = SGD(trainingSet, testingSet, runTest, epochs, batchSize, learningRate, 
+[w1,b1,w2,b2,best] = SGD(trainingSet, testingSet, runTest, epochs, batchSize, learningRate, 
 inputLayerSize, outputLayerSize, w1, b1, w2, b2);
 
 
