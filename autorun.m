@@ -1,12 +1,13 @@
+clear;
 %initial setup, variables must be set up for other scripts to work
 inputLayerSize = 784;
 hiddenLayerSize = 20;
 outputLayerSize = 10;
-sampleCount = 8;
+sampleCount = 0;            %set to zero to run entire training set
 learningRate = 0.1;
-batchSize = 4;
-epochs = 1;
-
+batchSize = 20;
+epochs = 5;
+runTest = true;
 
 %create 3-layer neural network
 [w1, b1, w2, b2] = createNet([inputLayerSize hiddenLayerSize outputLayerSize]);
@@ -16,8 +17,10 @@ epochs = 1;
 
 
 %train neural network
-trainingSet = trainingSet(1:sampleCount,1:inputLayerSize+1);
-[w1,b1,w2,b2] = SGD(trainingSet, epochs, batchSize, learningRate, 
+if (sampleCount > 0)
+  trainingSet = trainingSet(1:sampleCount,1:inputLayerSize+1);
+end
+[w1,b1,w2,b2] = SGD(trainingSet, testingSet, runTest, epochs, batchSize, learningRate, 
 inputLayerSize, outputLayerSize, w1, b1, w2, b2);
 
 
