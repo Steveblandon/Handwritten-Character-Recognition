@@ -3,10 +3,10 @@ inputLayerSize, outputLayerSize, w1, b1, w2, b2)
 
 for i=1:epochs
   % shuffle data
-  trainingSet_ = trainingSet(randperm(size(trainingSet,1)),:);
+  %trainingSet_ = trainingSet(randperm(size(trainingSet,1)),:);
   
   %partition set into batches
-  setSize = size(trainingSet_,1);
+  setSize = size(trainingSet,1);
   batches  = setSize/batchSize;
   for i2=1:batches
     batch_start = 1 + ((i2-1)*batchSize);
@@ -15,8 +15,8 @@ for i=1:epochs
       batch_end = setSize;
     end
     batchSize = batch_end - batch_start + 1;
-    batch = trainingSet_(batch_start:batch_end, 1:inputLayerSize);
-    labels = trainingSet_(batch_start:batch_end, inputLayerSize+1);
+    batch = trainingSet(batch_start:batch_end, 1:inputLayerSize);
+    labels = trainingSet(batch_start:batch_end, inputLayerSize+1);
     y = getY(labels,outputLayerSize);
     
     %calculate errors
@@ -44,5 +44,5 @@ for i=1:epochs
     fflush(stdout);
   end
   
-  clear labels a trainingSet_;
+  clear labels a;
 end
