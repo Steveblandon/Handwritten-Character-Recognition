@@ -1,4 +1,4 @@
-function [trainingSet, testingSet] = loadData(inputLayerSize)
+function [testingSet, trainingSet] = loadData(inputLayerSize)
 %this function decodes and loads MNIST data
 %each set has 784 features, the 785th column is the class each sample belongs to
 trainingSet = 'MNIST/train-images-idx3-ubyte';

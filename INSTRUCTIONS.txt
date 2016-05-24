@@ -1,0 +1,16 @@
+open in matlab or octave (opensource version of matlab), the .m files can be ran in either, though it's best to run octave to avoid any complications.
+open the autorun.m script to adjust hyperparameters like amount of neurons in the hidden layer, batch size, learning rate, epochs...etc. 
+run the autorun.m script to see program in action.
+
+Additionally you can run the following commands to run the best neural network we obtained:
+==========================================================================================
+testingSet = loadData(784);		//load testing set
+[w1,b1,w2,b2] = loadNet("neuralNet8");	//load neural network
+getAccuracy(testingSet,w1,b1,w2,b2)	//runs testing set through network and returns accuracy
+
+
+for individual testing of samples:
+==================================
+getLabel(testingSet,5)			//the second parameter gets the sample label for any of the 10000 samples
+sample = getSample(testingSet,5);	//get a sample from the testing
+identify(sample,w1,b1,w2,b2)		//runs sample through network and gives best answer (with highest activation value)
